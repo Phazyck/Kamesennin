@@ -1,0 +1,655 @@
+
+html {
+    font-size: 62.5%;
+    overflow-y: scroll;
+}
+
+body {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-weight: 400;
+    width: auto;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    color: #555;
+    background-color: #eee;
+    display: flex;  
+    flex-flow: row wrap;
+    position: relative;
+    box-sizing: border-box;
+}
+
+body > * {
+    flex: 1 100%;
+}
+
+.content {
+    width: auto;
+    color: #222;
+    display: flex;  
+    flex-flow: row wrap;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.content > * {
+    padding: 10px;
+    flex: 1 100%;
+}
+
+div {
+    display: block;
+}
+
+/* rows */
+
+.row {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  display: flex;  
+  flex-flow: row wrap;
+}
+
+.row:first-child {
+    padding-top: 0;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.row > * {
+  flex: 1 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 4px;
+  min-width: 160px;
+}
+
+/* user-information */
+
+.user-information {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: stretch;
+  
+}
+
+.user-information img {  
+  max-width: 128px;
+  max-height: 128px;
+  border-radius: 50%;
+}
+
+.user-information td:first-child {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+}
+
+/* controls */
+
+.controls {
+    /*min-width: 210px;*/
+}
+
+.button-toggle > label {
+    width: 100%;
+    transition: 0.5s;
+    outline: 0;
+    
+    /* skeleton */
+    display: inline-block;
+    height: 38px;
+    padding: 0 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 4px;
+    
+    border-width: 1.5px;
+    border-style: solid;
+    
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.button-toggle > input:checked ~ label { 
+    color: #fff;
+}
+
+.button-toggle > input {
+    display:none; 
+}
+
+.button-toggle > input:not(:checked) ~ label { 
+    background-color: transparent;
+}
+
+.button-toggle > input:disabled ~ label {
+    color: #555;
+    background-color: transparent;
+    border-style: dashed;
+    border-width: 1.5px;
+    border-color: #666;
+}
+
+/* buttons */
+
+.button {
+    display: inline-block;
+    height: 38px;
+    padding: 0 30px;
+    color: #555;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.button-export {
+    color: #FFF;
+    background-color: #13C549;
+    border-color: #13C549;
+    width: 100%;
+}
+
+.button-export:hover {
+    color: #FFF;
+    background-color: #00A833;
+    border-color: #00A833;
+}
+
+/* themes */
+
+.theme-apprentice {
+    background-color: #dd0093;
+    border-color: #dd0093;
+    color: #dd0093; 
+}
+
+.theme-apprentice:hover {
+    background-color: #C4007A;
+    border-color: #C4007A;
+}
+
+.theme-guru {
+    background-color: #882d9e;
+    border-color: #882d9e;
+    color: #882d9e;
+}
+
+.theme-guru:hover {
+    background-color: #6F1485;
+    border-color: #6F1485;
+}
+
+.theme-master {
+    background-color: #294ddb;
+    border-color: #294ddb;
+    color: #294ddb;
+}
+
+.theme-master:hover {
+    background-color: #1034C2;
+    border-color: #1034C2;
+}
+
+.theme-enlighten {
+    background-color: #0093dd;
+    border-color: #0093dd;
+    color: #0093dd;
+}
+
+.theme-enlighten:hover {
+    background-color: #007AC4;
+    border-color: #007AC4;
+}
+
+.theme-burned {
+    background-color: #434343;
+    border-color: #434343;
+    color: #434343;
+}
+
+.theme-burned:hover {
+    background-color: #2A2A2A;
+    border-color: #2A2A2A;
+}
+
+.theme-radical {
+    background-color: #00a1f1;
+    border-color: #00a1f1;
+    color: #00a1f1;
+}
+
+.theme-radical:hover {
+    background-color: #0088D8;
+    border-color: #0088D8;
+}
+
+.theme-kanji {
+    background-color: #f100a1;
+    border-color: #f100a1;
+    color: #f100a1;
+}
+
+.theme-kanji:hover {
+    background-color: #D80088;
+    border-color: #D80088;
+}
+
+.theme-vocabulary {
+    background-color: #a100f1;
+    border-color: #a100f1;
+    color: #a100f1;
+}
+
+.theme-vocabulary:hover {
+    background-color: #8800D8;
+    border-color: #8800D8;
+}
+
+/* table */
+
+table {
+  border-collapse: collapse; 
+  width: 100%;
+  color: #555;
+}
+
+.data-table {
+  overflow-x: scroll;
+}
+
+table.user-information {
+  table-layout: fixed;
+}
+
+table > tbody > tr {
+  border-bottom: 1px solid #ddd;
+}
+
+table > tbody > tr > td {
+  padding: 10px 0px;
+}
+
+table > tbody > tr:last-child > td {
+  padding-bottom: 0;
+}
+
+table > thead > tr {
+  border-bottom: 1px solid #ddd;
+}
+
+table.user-information > tbody > tr:last-child {
+  border-bottom: 0;
+}
+
+table > thead > tr {
+  font-weight: bold;
+  text-align: left;
+}
+
+.table-data tbody tr:hover {
+  background-color: #D5D5D5;
+  border-radius: 4px;
+}
+
+.table-data td {
+  font-size: 2rem;
+}
+
+.table-data .cell-level {
+  width: 1%;
+  text-align: center;  
+}
+
+.table-data .cell-character {
+  width: 14%;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.table-data .cell-kana {
+  width: 40%;
+  text-align: left;
+  white-space: pre;
+}
+
+.table-data .cell-meaning {
+  width: 40%;
+  text-align: left;
+  white-space: pre;
+}
+
+.table-data td > a {
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: block;
+}
+
+td.cell-level > a, td.cell-character > a {
+  color: white;
+}
+
+td.cell-level:hover > a, td.cell-character:hover > a {
+  font-family: "HiraMinPro-W3", "Hiragino Mincho Pro W3", "Hiragino Mincho Pro", "ヒラギノ明朝 Pro W3", "游明朝", YuMincho, "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", "MS Mincho", serif;
+  text-shadow: 0 0 3px #fff;
+  cursor: pointer;
+}
+
+.table-data td {
+  padding: 10px 10px 10px 0px;
+}
+
+.table-data th {
+  padding: 10px 10px 0px 0px;
+}
+
+.table-data td:first-child {
+  padding-left: 10px;
+}
+
+.table-data th:first-child {
+  padding-left: 10px;
+}
+
+.table-data tr.row-disabled {
+  display: none;
+}
+
+/* navbar */
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar > * {
+  margin-top: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.navbar-middle {
+  flex-grow: 10;
+  display: none;
+  min-width: 200px;
+}
+
+.navbar-right {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar-emblem {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-left: 16px;
+  text-decoration: none;
+  color: #555;
+  display: block;
+}
+
+.emblem-character {
+  display: inline-block;
+  color: white;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 2rem;
+  line-height: 32px;
+  text-align: center;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.navbar-brand {
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  margin: 0 16px;
+  text-decoration: none;
+  line-height: 32px;
+  background-color: transparent;
+  border: none;
+}
+
+.brand-text {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  text-decoration: none;
+  
+  line-height: 32px;
+  background-color: transparent;
+  border: none;
+}
+
+.brand-text:hover {
+  background-color: transparent;
+}
+
+.navbar-input {
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin: 0 16px;
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  height: 32px;
+  display: block;
+  color: #555;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+.navbar-input:focus {
+    color: #292f33;
+    text-shadow: none;
+    background-color: #fff;
+    box-shadow: none;
+    opacity: 1;
+    outline: 0;
+}
+
+.navbar-button-load {
+  margin-right: 16px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  text-decoration: none;
+  color: #555;
+  border-radius: 4px;
+
+  background-color: transparent;
+  transition: 0.5s;
+
+
+  height: 32px;
+  padding: 0px 30px;
+    
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  line-height: 32px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+    
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.navbar-button-load:hover {
+  background-color: #ddd;
+}
+
+.navbar-button-load:active {
+  background-color: #bbb;
+}
+
+/* responsiveness */
+
+@media all and (min-width: 600px) {
+
+    
+
+    body {
+      margin: 0px 20px;
+    }
+
+    body > * {
+      padding: 10px;
+    }
+
+    .data    { 
+        flex: 4 0px; 
+    }
+
+    .controls   { 
+        flex: 1 0px; 
+    }
+    
+    
+}
+
+@media all and (max-width: 600px) {
+
+    body {
+      margin: 0;
+      width: 100%;
+    }
+
+    .navbar-input {
+      min-width: 100px;     
+    }
+    
+    body > * {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .content > * {
+      padding: 0px;  
+      width: 100%;
+    }
+
+    .navbar-left {
+        flex-grow: 1;
+        justify-content: center;
+    }
+   
+    .navbar-middle {
+        display: none;
+    }
+
+    .navbar-right {
+        min-width: 300px;
+    }
+}
+
+.loading-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.loading {
+  position: relative;
+  top: -20px;
+  left: -130px;
+  font-size: 22px;
+}
+.loading-bar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: white;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 4px;
+  animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+  background-color: #dd0093;
+  animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+  background-color: #C4007A;
+  animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+  background-color: #882d9e;
+  animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+  background-color: #294ddb;
+  animation-delay: .27s;
+}
+
+.loading-bar:nth-child(5) {
+  background-color: #0093dd;
+  animation-delay: .36s;
+}
+
+.loading-bar:nth-child(6) {
+  background-color: #434343;
+  animation-delay: .45s;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(2, 2);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

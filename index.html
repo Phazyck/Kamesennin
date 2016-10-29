@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Kamesennin</title>
+        <link rel="shortcut icon" type="image/png" href="images/kame.png"/>
+
+        <meta content="Kamesennin" property="og:site_name">
+        <meta content="Kamesennin, a tool for exporting data from Wanikani to other software, i.e. Anki." property="og:title">
+
+        <meta name="application-name" content="Kamesennin">
+        <meta name="description" content="A tool for exporting data from Wanikani to other software, i.e. Anki.">
+        <meta name="author" content="Oliver Phillip Roer">
+        
+        <meta name="viewport" content="width=device-width">
+
+        <meta content="summary_large_image" name="twitter:card">
+        <meta content="@phazyck" name="twitter:creator">
+        <meta content="@phazyck" name="twitter:site">
+        <meta content="A tool for exporting data from Wanikani to other software, i.e. Anki." name="twitter:description">
+        <meta content="Kamesennin" name="twitter:title">
+        
+        <meta content="images/kame.jpg" property="og:image">
+        <meta content="images/kame.jpg" name="twitter:image">
+
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+    <body>
+        <div class="row">
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <a class="navbar-emblem" href="#" data-bind="click: clear">
+                        <div class="theme-radical emblem-character">亀</div>
+                        <div class="theme-kanji emblem-character">仙</div>
+                        <div class="theme-vocabulary emblem-character">人</div>
+                    </a>
+                    <a class="navbar-brand" href="#" data-bind="click: clear">
+                        <div class="theme-radical brand-text">kame</div><div class="theme-kanji brand-text">sen</div><div class="theme-vocabulary brand-text">nin</div>
+                    </a>
+                </div>
+                
+                <div class="navbar-middle">
+
+                </div>
+                
+                <form class="navbar-right" data-bind="submit: loadData">
+                    <input 
+                        class="navbar-input" 
+                        type="text" 
+                        id="api-key" 
+                        placeholder="API Key" 
+                        name="api-key" 
+                        autofocus="autofocus" 
+                        autocomplete="autocomplete" 
+                        data-bind="value: apiKey">
+                    <a class="navbar-button-load" href="#" data-bind="click: loadData">
+                        Load
+                    </a>
+                </form>
+            </nav>
+        </div>
+
+        <div class="content" data-bind="if: isLoading">
+            <div class="loading-container">
+                <div class="loading">
+                    <div class="loading-bar">か</div>
+                    <div class="loading-bar">め</div>
+                    <div class="loading-bar">せ</div>
+                    <div class="loading-bar">ん</div>
+                    <div class="loading-bar">に</div>
+                    <div class="loading-bar">ん</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content" data-bind="if: dataLoaded">
+
+        <div class="controls">
+            <div class="row"> 
+                <div class="user-information">
+                    <img alt="gravatar" data-bind="attr: { src: data().gravatar}">
+                    <table class="user-information">
+                        <tbody data-bind="foreach: data().userInformation">
+                            <tr>
+                                <td data-bind="text: $data.property"></td>
+                                <td data-bind="text: $data.value"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row" data-bind="foreach: states">
+                <div class="button-toggle">
+                    <input 
+                        type="checkbox" 
+                        name="state-option" 
+                        data-bind="
+                            checked: $parent.currentData().states.chosen, 
+                            attr: { id: 'state-' + $data, value: $data },
+                            enable: $parent.currentData().states.enabled[$data]">
+                    <label data-bind="text: $data, attr: { class: 'theme-' + $data, for: 'state-' + $data }">
+                    </label>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="button-toggle">
+                    <input type="radio" name="type-option" id="type-kanji" value="kanji" data-bind="checked: chosenType">
+                    <label class="theme-kanji" for="type-kanji">
+                        Kanji
+                    </label>
+                </div>
+                <div class="button-toggle">
+                    <input type="radio" name="type-option" id="type-vocabulary" value="vocabulary" data-bind="checked: chosenType">
+                    <label class="theme-vocabulary" for="type-vocabulary">
+                        Vocabulary
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <input class="button button-export" type="submit" value="export" data-bind="click: exportData">
+                </div>
+            </div>
+        </div>
+        
+        <div class="data">
+            <div class="row">
+                <table class="table-data">
+                    <thead>
+                        <tr>
+                            <th class="cell-level">level</th>
+                            <th class="cell-character">character</th>
+                            <th class="cell-kana">kana</th>
+                            <th class="cell-meaning">meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: currentData().values">
+                        <tr data-bind="css: { 'row-disabled': $data.disabled, 'row-enabled': $data.ensabled }">
+                            <td class="cell-level"><a data-bind="text: $data.level, attr: { href: $data.urlWanikani, class: ('theme-' + $parent.chosenType()) }"></a></td>
+                            <td class="cell-character"><a data-bind="text: $data.character, attr: { href: $data.urlJisho, class: ('theme-' + $data.state) }"></a></td>
+                            <td class="cell-kana"><a data-bind="text: $data.kana"></a></td>
+                            <td class="cell-meaning"><a data-bind="text: $data.meaning"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </body>
+
+    <!-- scripts -->
+    <script type='text/javascript' src='lib/scripts/jquery-3.1.1.min.js'></script>
+    <script type='text/javascript' src='lib/scripts/knockout-3.4.0.js'></script>
+    <script type="text/javascript" src="wanikani.js"></script>
+    <script type="text/javascript" src="viewmodel.js"></script>
+    <script type="text/javascript" src="debug.js"></script>
+</html>
