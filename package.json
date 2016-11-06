@@ -1,0 +1,11 @@
+{
+    "name": "tasks-server",
+    "version": "1.0.0",
+    "author": {
+        "name": "Oliver Phillip Roer",
+        "email": "oliver.roer@gmail.com"
+    },
+    "scripts": {
+        "start": "http-server . -p 3000"
+    }
+}
